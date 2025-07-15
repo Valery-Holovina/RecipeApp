@@ -16,6 +16,21 @@
 			path = RecipeApp;
 			sourceTree = "<group>";
 		};
+		1A4415892E23D2B7003C563B /* Models */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1A4415902E23DEB9003C563B /* Components */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Components;
+			sourceTree = "<group>";
+		};
+		1A4415962E23EDEC003C563B /* Detail */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Detail;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +49,9 @@
 			children = (
 				1A4415622E23C650003C563B /* RecipeApp */,
 				1A4415612E23C650003C563B /* Products */,
+				1A4415892E23D2B7003C563B /* Models */,
+				1A4415902E23DEB9003C563B /* Components */,
+				1A4415962E23EDEC003C563B /* Detail */,
 			);
 			sourceTree = "<group>";
 		};
@@ -62,6 +80,9 @@
 			);
 			fileSystemSynchronizedGroups = (
 				1A4415622E23C650003C563B /* RecipeApp */,
+				1A4415892E23D2B7003C563B /* Models */,
+				1A4415902E23DEB9003C563B /* Components */,
+				1A4415962E23EDEC003C563B /* Detail */,
 			);
 			name = RecipeApp;
 			packageProductDependencies = (

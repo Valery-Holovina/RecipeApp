@@ -8,11 +8,39 @@
 import SwiftUI
 
 struct RecipeCard: View {
+    
+    var recipe: Recipe
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+       
+            VStack {
+             
+                Image(recipe.image)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+               
+                    Text(recipe.name)
+                        .font(.caption)
+                        .foregroundStyle(.gray)
+
+
+                Spacer()
+
+                   
+
+                }
+            .frame(width: 152, height: 210,alignment: .top)
+            .background(.thinMaterial)
+            .clipShape(RoundedRectangle(cornerRadius: 20, style: .continuous))
+            .shadow(color: Color.secondary, radius: 3)
+     
+      
+
+  
     }
 }
 
 #Preview {
-    RecipeCard()
+    RecipeCard(recipe: Recipe.all[0])
 }

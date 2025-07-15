@@ -7,12 +7,32 @@
 
 import SwiftUI
 
-struct TapBar: View {
+struct TapBarView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        TabView{
+           
+            Tab("Home", systemImage: "house.circle") {
+                HomeView()
+              }
+
+            Tab("Categories",systemImage: "list.star"){
+                CategoriesView()
+            }
+
+            Tab("New Recipe", systemImage: "plus.app.fill"){
+                NewRecipeView()
+            }
+            Tab("Favorites", systemImage: "frying.pan"){
+                FavoritesView()
+            }
+            Tab("Settings", systemImage: "gear.circle"){
+                SettingsView()
+            }
+
+        }
     }
 }
 
 #Preview {
-    TapBar()
+    TapBarView()
 }
