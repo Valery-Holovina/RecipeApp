@@ -22,7 +22,7 @@ struct RecipeCard: View {
                
                     Text(recipe.name)
                         .font(.caption)
-                        .foregroundStyle(.gray)
+                        .foregroundStyle(Color("myGray"))
 
 
                 Spacer()

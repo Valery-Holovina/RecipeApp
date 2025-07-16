@@ -17,6 +17,7 @@ struct AddRecipeView: View {
     @State private var ingredients: String = ""
     @State private var directions: String = ""
     
+    
     @State private var navigateToNewRecipe = false
     
     @Environment(\.dismiss) var dismiss
@@ -69,7 +70,7 @@ struct AddRecipeView: View {
                                 navigateToNewRecipe.toggle()
                             } label: {
                                 Image(systemName: "checkmark.circle")
-                                    .foregroundStyle(.green)
+                                    .foregroundStyle(name.isEmpty ? .gray : .green)
                                 
                                 
                             }
