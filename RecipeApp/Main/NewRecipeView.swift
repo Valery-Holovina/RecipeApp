@@ -8,10 +8,21 @@
 import SwiftUI
 
 struct NewRecipeView: View {
+    @State private var showAddRecipe = false
     var body: some View {
         NavigationStack {
-            Text("New Recipe")
+            Button(action: {
+                showAddRecipe.toggle()
+            }, label: {
+                Text("Add Recipe")
+            })
                 .navigationTitle("New Recipe")
+                .popover(isPresented: $showAddRecipe) {
+                    AddRecipeView()
+                        .presentationCompactAdaptation(.sheet)
+             
+                    
+                }
         }
     }
 }

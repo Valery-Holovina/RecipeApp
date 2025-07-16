@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @Environment(RecipesViewModel.self) var recipesVM
     var body: some View {
         TapBarView()
     }
@@ -15,5 +16,6 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
+        .environment(RecipesViewModel())
 }
 
