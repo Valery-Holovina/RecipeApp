@@ -8,15 +8,24 @@
 import SwiftUI
 
 struct FavoritesView: View {
+    @Environment(RecipesViewModel.self) var recipesVM
     var body: some View {
         NavigationStack {
-            Text("You have not saved any recipe to your favorites yet")
-                .padding()
-                .navigationTitle("Favorites")
+            
+            ScrollView {
+                RecipeList(recipes: recipesVM.recipes)
+            }
+            
+            
+            
+            .navigationTitle("Favorites")
         }
+        
     }
 }
 
+
 #Preview {
     FavoritesView()
+        .environment(RecipesViewModel())
 }

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct AddRecipeView: View {
     
@@ -22,9 +23,27 @@ struct AddRecipeView: View {
     
     @Environment(\.dismiss) var dismiss
     
+    // add photo
+    @State private var addImage: UIImage?
+    @State private var photosPickerItem: PhotosPickerItem?
+    
+    
     var body: some View {
         NavigationStack{
+
                 Form{
+                    //add photo
+                    PhotosPicker(selection: $photosPickerItem, matching: .images){
+                        if let image = addImage ?? UIImage(named: "AddPhoto") {
+                            Image(uiImage: image)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                        } else {
+                            Color.gray
+                        }
+
+                    }
                     Section("Name") {
                         TextField("Recipe name", text: $name)
                     }
@@ -86,7 +105,18 @@ struct AddRecipeView: View {
 
         
         }
+        .onChange(of: photosPickerItem) { _, _ in
+            Task{
+                if let photosPickerItem,
+                   let data = try? await photosPickerItem.loadTransferable(type: Data.self){
+                    if let image = UIImage(data: data){
+                        addImage = image
+                    }
+                }
+            }
+        }
     }
+    
 }
 
 #Preview {
@@ -106,7 +136,9 @@ extension AddRecipeView{
         let datePublished = dateFormater.string(from: now)
         print(datePublished)
         
-        let recipe = Recipe(name: name, image: "bircher-muesli-8039257-4000x4000-b007aad2b4bc4b9895924f90f33faf41", description: description, ingredients: ingredients, directions: directions, category: category.rawValue, datePublished: datePublished)
+        
+        let recipe = Recipe(name: name, image: nil, loadedImage: addImage, description: description, ingredients: ingredients, directions: directions, category: category.rawValue, datePublished: datePublished)
         recipesVM.addRecipe(recipe: recipe)
+       
     }
 }

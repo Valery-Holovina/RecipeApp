@@ -63,8 +63,12 @@ struct RecipeView: View {
             return .white
         }
     }
-
+    
+    @State var addedToFavoritesRecipe: Bool = false
+    
     var body: some View {
+        
+        
         ScrollView {
             VStack {
                 if !recipe.name.isEmpty {
@@ -78,8 +82,24 @@ struct RecipeView: View {
                 }
 
                 VStack(spacing: 25) {
-                    if !recipe.image.isEmpty {
-                        Image(recipe.image)
+                    if ((recipe.image?.isEmpty) != nil){
+                        Image(recipe.image ?? "AddPhoto")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 300, height: 300, alignment: .top)
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                            .shadow(color: .white, radius: 5)
+                            .padding(.top, 20)
+                    }else if (recipe.loadedImage != nil){
+                        Image(uiImage: recipe.loadedImage ?? .addPhoto )
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 300, height: 300, alignment: .top)
+                            .clipShape(RoundedRectangle(cornerRadius: 20))
+                            .shadow(color: .white, radius: 5)
+                            .padding(.top, 20)
+                    }else{
+                        Image("AddPhoto" )
                             .resizable()
                             .scaledToFit()
                             .frame(width: 300, height: 300, alignment: .top)
@@ -92,6 +112,16 @@ struct RecipeView: View {
                         if !recipe.category.isEmpty {
                             Text(recipe.category)
                         }
+
+                        Button {
+                            withAnimation(.easeInOut){
+                                addedToFavoritesRecipe.toggle()
+                            }
+                        } label: {
+                            Image(systemName: addedToFavoritesRecipe ? "star.fill" : "star")
+                        }
+                            
+
                         Spacer()
                         if !recipe.datePublished.isEmpty {
                             Text(recipe.datePublished)

@@ -15,10 +15,18 @@ struct RecipeCard: View {
        
             VStack {
              
-                Image(recipe.image)
+                if ((recipe.image?.isEmpty) != nil){
+                    Image(recipe.image ?? "AddPhoto")
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                }else if (recipe.loadedImage != nil){
+                    Image(uiImage: recipe.loadedImage ?? .addPhoto)
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                        
+                }
                
                     Text(recipe.name)
                         .font(.caption)
